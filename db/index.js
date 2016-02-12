@@ -10,6 +10,7 @@ module.exports = {
       new sqlite.Database(__dirname +'/f500.db', function(err){
         if(err)
           return cb(err, null);
+        console.log(this);
         _db = this;
         _db.on('profile', function(qry, time){
           console.log(chalk.blue(qry));

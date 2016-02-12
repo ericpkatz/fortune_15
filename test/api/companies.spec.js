@@ -1,6 +1,7 @@
 var db = require('../../db');
 var expect = require('chai').expect;
 var request = require('supertest-as-promised')(require('../../app'));
+
 describe('api', function(){
   before(function(done){
     db.connect(function(){
