@@ -10,6 +10,5 @@ module.exports = {
       employees.push({ first_name: faker.name.firstName(), last_name: faker.name.firstName(), id: employees.length + 1, company_id: Math.ceil(Math.random() * companyCount) });
     
     return { companies: companies, employees: employees };
-  
   }
 };
