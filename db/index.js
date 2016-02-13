@@ -3,11 +3,11 @@ var sqlite = require('sqlite3');
 var chalk = require('chalk');
 var _db;
 module.exports = {
-  connect : function(cb){
+  connect : function(dbName, cb){
     if(_db)
       return cb(null, _db);
     else
-      new sqlite.Database(__dirname +'/f500.db', function(err){
+      new sqlite.Database(__dirname +'/' + dbName +'.db', function(err){
         if(err)
           return cb(err, null);
         console.log(this);
@@ -20,8 +20,7 @@ module.exports = {
         cb(null, _db);
       });
   },
-  seed : function(companyCount, employeeCount, cb){
-    var data = seeder.generateData(companyCount, employeeCount);
+  seed : function(data, cb){
     var companiesQuery = data.companies.map(function(company){
       return `
         insert into companies (name) values ('${company.name}');
