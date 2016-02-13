@@ -2,14 +2,7 @@ var db = require('./db');
 
 var http = require('http');
 db.connect('f500', function(){
-  if(process.env.SEED){
-    var data = require('./db/seeder').generateData(150, 1000)
-    db.seed(data, function(){
-      createServer();
-    });
-  }
-  else
-    createServer();
+  createServer();
 });
 
 function createServer(){

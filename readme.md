@@ -1,5 +1,4 @@
 -- npm install
 -- npm start
 -- npm test (to test)
--- SEED=true node server.js (to seed data)
--- nodemon server.js (to run with nodemon)
+-- npm run seed (to seed the database) - this will randomly add 15 companies and 100 employees 
