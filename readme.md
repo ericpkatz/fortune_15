@@ -1,0 +1,5 @@
+-- npm install
+-- npm start
+-- npm test (to test)
+-- SEED=true node server.js (to seed data)
+-- nodemon server.js (to run with nodemon)

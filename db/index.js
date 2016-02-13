@@ -21,14 +21,18 @@ module.exports = {
       });
   },
   seed : function(data, cb){
+    function clean(input){
+      return input.replace('\'', '');
+    
+    }
     var companiesQuery = data.companies.map(function(company){
       return `
-        insert into companies (name) values ('${company.name}');
+        insert into companies (name) values ('${clean(company.name)}');
         `;
     }).join('');
     var employeesQuery = data.employees.map(function(employee){
       return `
-        insert into employees (first_name, last_name, company_id) values ('${employee.first_name}','${employee.last_name}',${employee.company_id});
+        insert into employees (first_name, last_name, company_id) values ('${clean(employee.first_name)}','${clean(employee.last_name)}',${employee.company_id});
         `;
     }).join('');
     var script = `
@@ -50,13 +54,16 @@ module.exports = {
       ${employeesQuery}
       `;
 
+    console.log(script);
+
     _db.exec(script, function(err){
+      console.log('--DONE EXEC--');
       cb(err);
     });
   },
   getCompanies : function(cb){
     var qry = `
-      select name, count(*) as employeeCount
+      select companies.id, name, count(*) as employeeCount
       from companies
       join employees
       ON companies.id = employees.company_id

@@ -24,7 +24,6 @@ describe('api', function(){
       return request.get('/companies')
         .expect(200)
         .then(function(resp){
-          companies = resp.body;
           expect(resp.body.length).to.eq(2);
         });
     });
@@ -35,18 +34,19 @@ describe('api', function(){
       return request.get('/companies/1/employees')
         .expect(200)
         .then(function(resp){
-          expect(resp.body.length).to.be.gt(0);
+          expect(resp.body.length).to.eq(2);
         });
     });
   });
 
-  describe('/employees', function(){
-   it('there are 5', function(){
-      return request.get('/employees')
+  describe('/companies/2/employees', function(){
+   it('there is at least one employee', function(){
+      return request.get('/companies/2/employees')
         .expect(200)
         .then(function(resp){
-          expect(resp.body.length).to.eq(5);
+          expect(resp.body.length).to.eq(3);
         });
     });
   });
+
 });
