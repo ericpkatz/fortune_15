@@ -152,4 +152,20 @@ module.exports = {
       cb(err, data);
     }); 
   },
+  getCompany : function(id, cb){
+    var qry = `
+      select id, name 
+      from companies 
+      WHERE id = ? 
+      ;
+      `;
+    _db.all(qry, [id], function(err, rows){
+      console.log(arguments);
+      var data;
+      if(rows){
+        data = rows[0];
+      }
+      cb(err, data);
+    }); 
+  },
 };
