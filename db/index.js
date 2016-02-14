@@ -1,4 +1,3 @@
-var seeder = require('./seeder');
 var sqlite = require('sqlite3');
 var chalk = require('chalk');
 var _db;
@@ -126,5 +125,31 @@ module.exports = {
       }
       cb(err, data);
     }); 
-  }
+  },
+  getEmployee : function(companyId, id, cb){
+    var qry = `
+      select employees.id, first_name, last_name, company_id, companies.name 
+      from employees 
+      join companies 
+      ON companies.id = employees.company_id
+      WHERE employees.id = ? and companies.id = ? 
+      ;
+      `;
+    _db.all(qry, [companyId, id], function(err, rows){
+      var data;
+      if(rows){
+        row = rows[0];
+          data =  {
+            id: row.id,
+            firstName: row.first_name,
+            lastName: row.last_name,
+            company : {
+              id: row.company_id,
+              name: row.name
+            } 
+          };
+      }
+      cb(err, data);
+    }); 
+  },
 };

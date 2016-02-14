@@ -15,8 +15,8 @@ app.get('/companies/:id/employees', function(req, res, next){
   });
 });
 
-app.get('/employees', function(req, res, next){
-  db.getEmployees(function(err, employees){
+app.get('/companies/:companyId/employees/:id', function(req, res, next){
+  db.getEmployee(req.params.companyId, req.params.id, function(err, employees){
     res.json(employees);
   });
 });
