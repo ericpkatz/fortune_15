@@ -6,11 +6,12 @@
   "scripts": {
     "test": "nodemon ./node_modules/mocha/bin/mocha test/**/*.js",
     "start": "nodemon server.js",
-    "seed" : "node seed.js"
+    "seed": "node seed.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "chalk": "^1.1.1",
     "express": "^4.13.4",
     "faker": "^3.0.1",

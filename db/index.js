@@ -168,4 +168,14 @@ module.exports = {
       cb(err, data);
     }); 
   },
+  insertEmployee : function(firstName, lastName, companyId, cb){
+    var qry = `
+      INSERT into employees (first_name, last_name, company_id)
+      VALUES ?, ?, ?
+      ;
+      `;
+    _db.run(qry, [firstName, lastName, companyId], function(err){
+      cb(err);
+    }); 
+  },
 };
