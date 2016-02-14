@@ -42,13 +42,14 @@ describe('api', function(){
   });
 
   describe('GET /companies/1/employees', function(){
-   it('gets the employees of Acme Tool and Die', function(){
+   it('gets the employees of Acme Tool and Die as well as the company', function(){
       return request.get('/companies/1/employees')
         .expect(200)
         .then(function(resp){
-          expect(resp.body.length).to.eq(2);
-          expect(resp.body[0].firstName).to.eq('Foo');
-          expect(resp.body[0].lastName).to.eq('Bar');
+          expect(resp.body.employees.length).to.eq(2);
+          expect(resp.body.employees[0].firstName).to.eq('Foo');
+          expect(resp.body.employees[0].lastName).to.eq('Bar');
+          expect(resp.body.company.name).to.eq('Acme Tool and Die');
         });
     });
   });

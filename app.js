@@ -19,7 +19,9 @@ app.get('/companies/:id', function(req, res, next){
 
 app.get('/companies/:id/employees', function(req, res, next){
   db.getEmployeesByCompanyId(req.params.id, function(err, employees){
-    res.json(employees);
+    db.getCompany(req.params.id, function(err, company){
+      res.json({ employees: employees, company: company });
+    });
   });
 });
 
