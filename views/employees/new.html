@@ -1,0 +1,23 @@
+{% extends '../layout.html' %}
+{% block content %}
+<form class='form' method='POST' action='/companies/{{company.id}}/employees'>
+    <div class='form-group'>
+        <label for='first_name'>First Name</label>
+        <input class='form-control' name='first_name' id='first_name' />
+    </div>
+    <div class='form-group'>
+        <label for='last_name'>Last Name</label>
+        <input class='form-control' name='last_name' id='last_name' />
+    </div>
+    <div class='form-group'>
+        <label for='company_id'>Company</label>
+        <select name='company_id' id='company_id' class='form-control'>
+            {% for _company in companies %}
+            <option value='{{_company.id}}' {% if company.id === _company.id %} selected {% endif %}>{{ _company.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <input class='btn btn-primary' type='submit' />
+    
+</form>
+{% endblock %}

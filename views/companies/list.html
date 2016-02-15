@@ -1,0 +1,19 @@
+{% extends '../layout.html' %}
+{% block content %}
+<table class='table'>
+    <thead>
+        <th>Company Name</th>
+        <th>Employee Count</th>
+    </thead>
+    {% for company in companies %}
+        <tr>
+            <td>
+                <a href='/companies/{{company.id}}/employees'>
+                {{ company.name }}
+                </a>
+            </td>
+            <td>{{ company.employeeCount }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}

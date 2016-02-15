@@ -1,3 +1,5 @@
+//faker allows me to generate random names..
+//and company names.. and just about anything else.
 var faker = require('faker');
 module.exports = {
   generateData : function(companyCount, employeeCount){
@@ -13,6 +15,7 @@ module.exports = {
   },
 
   generateFixedData : function(){
+    //very simple set of data
     var companies = [
       { name: 'Acme Tool and Die'}, 
       { name: 'Full Stack Academy'}
